@@ -47,7 +47,8 @@ A Geo Distributed LRU cache with time expiration.
 ## Install
 
 ```bash
-git clone https://github.com/lepri/ormuco_tests/question_c
+git clone https://github.com/lepri/ormuco_tests/
+cd ormuco_tests
 pip install -e question_c
 ```
 
