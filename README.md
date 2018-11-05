@@ -18,6 +18,8 @@ python question_a.py -l1 <x1> <x2> -l2 <x3> <x4>
 # Question B
 
 A software library that accepts 2 version string as input and returns whether one is greater than, equal, or less than the other.
+This test was done based on question example ("1.1", "1.2") and it's not validating any string with more than one point.
+To compare indexes it's necessary use other python functions like `zip` to ordenate and compare.   
 
 ## Usage
 ```bash
@@ -39,3 +41,46 @@ python tests_question_b.py
 ```
 
 # Question C
+
+A Geo Distributed LRU cache with time expiration.
+
+## Install
+
+```bash
+git clone https://github.com/lepri/ormuco_tests/question_c
+pip install -e question_c
+```
+
+## Usage
+
+Let's use the LRUCache to cache the pages accessed by users. `app` it's an app that uses Ormuco LRUCache.
+
+```python
+from cache import CacheItem, LRUCache
+from app.utils import get_requests, get_data
+
+cache = LRUCache(size=1024, expires=600 , region='Toronto')
+
+# get the user data from request
+user = get_request()
+
+if user in cache:
+    url = cache.get(user)
+else:
+    url = get_data(user)
+    user = Data(user, url)
+    cache.set(user)
+
+# return cache item to user
+serve_result(url)
+
+# remove expired content
+cache.remove_expired()
+
+```
+
+## Testing
+
+```bash
+python test_question_c.py
+```
